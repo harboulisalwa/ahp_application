@@ -430,6 +430,41 @@ textarea::placeholder, input::placeholder {color:var(--muted) !important; -webki
 .stApp [data-testid="stPills"] button[aria-pressed="true"] *,
 .stApp button[kind="pillsActive"] *, .stApp button[data-testid="stBaseButton-pillsActive"] * {
   color:#0B0610 !important; font-weight:800;}
+
+/* Champs de saisie (text_input, text_area, number_input, selectbox) : fond forcé à tous les niveaux */
+.stApp [data-baseweb="input"], .stApp [data-baseweb="input"] > div,
+.stApp [data-baseweb="base-input"], .stApp [data-baseweb="base-input"] > div,
+.stApp [data-baseweb="textarea"], .stApp [data-baseweb="textarea"] > div,
+.stApp [data-baseweb="select"] > div,
+.stApp [data-testid="stTextInput"] > div, .stApp [data-testid="stTextArea"] > div,
+.stApp [data-testid="stTextInputRootElement"], .stApp [data-testid="stTextAreaRootElement"],
+.stApp [data-testid="stNumberInput"] > div, .stApp [data-testid="stNumberInputContainer"] {
+  background:var(--surf2) !important; background-color:var(--surf2) !important;}
+.stApp textarea, .stApp input[type="text"], .stApp input[type="number"], .stApp input:not([type]) {
+  background:var(--surf2) !important; background-color:var(--surf2) !important;
+  color:var(--text) !important; -webkit-text-fill-color:var(--text) !important; caret-color:var(--pink);}
+.stApp textarea::placeholder, .stApp input::placeholder {
+  color:var(--muted) !important; -webkit-text-fill-color:var(--muted) !important; opacity:.8;}
+.stApp [data-baseweb="input"], .stApp [data-baseweb="textarea"] {border:1px solid var(--border) !important;}
+.stApp [data-baseweb="input"]:focus-within, .stApp [data-baseweb="textarea"]:focus-within {border-color:var(--pink) !important;}
+/* Autoremplissage du navigateur */
+.stApp input:-webkit-autofill {-webkit-box-shadow:0 0 0 1000px var(--surf2) inset !important;
+  -webkit-text-fill-color:var(--text) !important;}
+
+/* Pastilles centrées : plusieurs sélecteurs selon la version de Streamlit */
+.stApp [data-testid="stElementContainer"]:has([data-testid="stButtonGroup"]),
+.stApp [data-testid="stElementContainer"]:has(button[kind^="pills"]),
+.stApp [data-testid="stElementContainer"]:has(button[data-testid*="pills"]),
+.stApp .element-container:has([data-testid="stButtonGroup"]),
+.stApp [data-testid="stButtonGroup"], .stApp [data-testid="stPills"] {
+  display:flex !important; justify-content:center !important; align-items:center !important;
+  width:100% !important; text-align:center !important;}
+.stApp [data-testid="stButtonGroup"] > div, .stApp [data-testid="stPills"] > div,
+.stApp [data-baseweb="button-group"], .stApp [role="radiogroup"]:has(button),
+.stApp div:has(> button[kind^="pills"]), .stApp div:has(> button[data-testid*="pills"]) {
+  display:flex !important; flex-wrap:wrap !important; justify-content:center !important;
+  gap:8px !important; width:fit-content !important; max-width:100% !important;
+  margin-left:auto !important; margin-right:auto !important;}
 </style>
 """
 st.markdown(ROOT + CSS, unsafe_allow_html=True)
