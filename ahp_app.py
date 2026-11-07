@@ -296,11 +296,12 @@ textarea::placeholder, input::placeholder {color:var(--muted) !important; -webki
 .kpi.pink .l, .kpi.blue .l, .kpi.yellow .l {color:rgba(10,8,20,.78); text-transform:uppercase; letter-spacing:.09em; font-size:11.5px; font-weight:800;}
 .kpi.pink .v, .kpi.blue .v, .kpi.yellow .v {color:#0B0610; font-size:30px; margin-top:8px; line-height:1.1;}
 .kpi.pink .s, .kpi.blue .s, .kpi.yellow .s {color:rgba(10,8,20,.75); font-weight:700; margin-top:6px;}
-.kpi.dark {background:#050507; border:1px solid var(--pink); border-radius:20px; padding:20px 22px;
+/* carte « Meilleure option » : suit maintenant le thème (plus de noir en dur) */
+.kpi.dark {background:var(--surf); border:1px solid var(--pink); border-radius:20px; padding:20px 22px;
   box-shadow:0 16px 36px -18px rgba(255,77,157,.6);}
-.kpi.dark .l {color:#FF8CC6; text-transform:uppercase; letter-spacing:.09em; font-size:11.5px; font-weight:800;}
-.kpi.dark .v {color:#F5F5F7; font-size:30px; margin-top:8px; line-height:1.1;}
-.kpi.dark .s {color:#FACC15; font-weight:700; margin-top:6px;}
+.kpi.dark .l {color:var(--pinkt); text-transform:uppercase; letter-spacing:.09em; font-size:11.5px; font-weight:800;}
+.kpi.dark .v {color:var(--text); font-size:30px; margin-top:8px; line-height:1.1;}
+.kpi.dark .s {color:var(--yellowt); font-weight:700; margin-top:6px;}
 .kpi.compact {height:92px; box-sizing:border-box; padding:11px 16px; border-radius:16px; display:flex;
   flex-direction:column; justify-content:center; overflow:hidden;}
 .kpi.compact .l {font-size:10.5px; letter-spacing:.07em;}
@@ -376,6 +377,31 @@ textarea::placeholder, input::placeholder {color:var(--muted) !important; -webki
 .swatch div {flex:1; min-width:180px; border-radius:16px; padding:16px 18px; font-weight:700; border:1px solid;}
 .swatch .d {background:#0B0B0F; color:#F5F5F7; border-color:#FF4D9D;}
 .swatch .l {background:#FCF8FB; color:#1C1424; border-color:#E8DAE3;}
+
+/* ======================================================================
+   CORRECTIF THÈME : composants natifs Streamlit qui gardaient le fond noir
+   ====================================================================== */
+/* Alertes (st.error, st.warning, st.info) */
+.stApp [data-testid="stAlert"], .stApp [data-testid="stAlertContainer"] {
+  background:var(--surf2) !important; border:1px solid var(--border); border-radius:14px;}
+.stApp [data-testid="stAlert"] *, .stApp [data-testid="stAlertContainer"] * {color:var(--text) !important;}
+/* Expanders (fond du panneau ouvert) */
+.stApp [data-testid="stExpander"] details, .stApp [data-testid="stExpander"] summary,
+.stApp [data-testid="stExpanderDetails"] {background:var(--surf) !important; color:var(--text) !important;}
+/* Barre latérale (conteneurs internes) */
+[data-testid="stSidebarContent"], [data-testid="stSidebarHeader"] {background:var(--side) !important;}
+/* Menus déroulants, popovers, infobulles */
+[data-baseweb="popover"], [data-baseweb="popover"] > div, [data-baseweb="menu"],
+[data-baseweb="tooltip"] > div, [data-baseweb="select"] > div {
+  background:var(--surf) !important; color:var(--text) !important;}
+[data-baseweb="menu"] li, [data-baseweb="tooltip"] * {color:var(--text) !important;}
+/* Formules LaTeX et code */
+.stApp .katex, .stApp .katex * {color:var(--text) !important;}
+.stApp code {background:var(--surf2) !important; color:var(--pinkt) !important;}
+/* Fichier chargé dans le uploader */
+.stApp [data-testid="stFileUploaderFile"] * {color:var(--text) !important;}
+/* Graphiques Plotly : fond transparent même si le thème natif est sombre */
+.stApp [data-testid="stPlotlyChart"], .stApp .js-plotly-plot, .stApp .plotly, .stApp .main-svg {background:transparent !important;}
 </style>
 """
 st.markdown(ROOT + CSS, unsafe_allow_html=True)
