@@ -402,6 +402,34 @@ textarea::placeholder, input::placeholder {color:var(--muted) !important; -webki
 .stApp [data-testid="stFileUploaderFile"] * {color:var(--text) !important;}
 /* Graphiques Plotly : fond transparent même si le thème natif est sombre */
 .stApp [data-testid="stPlotlyChart"], .stApp .js-plotly-plot, .stApp .plotly, .stApp .main-svg {background:transparent !important;}
+
+/* Pastilles (st.pills / groupes de boutons) : plusieurs sélecteurs, car le nom interne varie selon la version */
+.stApp [data-testid="stButtonGroup"] button,
+.stApp [data-testid="stPills"] button,
+.stApp [data-baseweb="button-group"] button,
+.stApp button[kind^="pills"],
+.stApp button[data-testid*="pills"] {
+  background:var(--surf) !important; background-image:none !important; color:var(--text) !important;
+  border:1.5px solid var(--border) !important; border-radius:999px !important; box-shadow:none !important;}
+.stApp [data-testid="stButtonGroup"] button *, .stApp [data-testid="stPills"] button *,
+.stApp [data-baseweb="button-group"] button *, .stApp button[kind^="pills"] *,
+.stApp button[data-testid*="pills"] * {color:var(--text) !important;}
+.stApp [data-testid="stButtonGroup"] button:hover, .stApp [data-testid="stPills"] button:hover,
+.stApp button[kind^="pills"]:hover, .stApp button[data-testid*="pills"]:hover {border-color:var(--pink) !important;}
+/* pastille sélectionnée */
+.stApp [data-testid="stButtonGroup"] button[aria-checked="true"],
+.stApp [data-testid="stButtonGroup"] button[aria-pressed="true"],
+.stApp [data-testid="stPills"] button[aria-checked="true"],
+.stApp [data-testid="stPills"] button[aria-pressed="true"],
+.stApp button[kind="pillsActive"], .stApp button[data-testid="stBaseButton-pillsActive"] {
+  background:linear-gradient(135deg,#FF6BB0,#F0408C) !important; border-color:var(--pink) !important;
+  box-shadow:0 10px 22px -12px rgba(255,77,157,.95) !important;}
+.stApp [data-testid="stButtonGroup"] button[aria-checked="true"] *,
+.stApp [data-testid="stButtonGroup"] button[aria-pressed="true"] *,
+.stApp [data-testid="stPills"] button[aria-checked="true"] *,
+.stApp [data-testid="stPills"] button[aria-pressed="true"] *,
+.stApp button[kind="pillsActive"] *, .stApp button[data-testid="stBaseButton-pillsActive"] * {
+  color:#0B0610 !important; font-weight:800;}
 </style>
 """
 st.markdown(ROOT + CSS, unsafe_allow_html=True)
